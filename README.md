@@ -11,7 +11,7 @@ PyTorch implementations of cutting-edge vision-language models from scratch. Dem
 This repository contains a detailed PyTorch implementation of the PaLiGemma vision-language model (VLM). PaLiGemma is a powerful multimodal model that combines Google's Gemma language model with a SigLIP vision encoder, allowing it to understand both images and text to generate contextually relevant responses.
 
 <div align="center">
-<img src="images/PaliGemma%20 .png" width="1000" alt="PaLiGemma"/>
+<img src="images/PaliGemma%20.png" width="1000" alt="PaLiGemma"/>
 </div>
 
 <div align="center">
@@ -82,7 +82,7 @@ The implementation in `modeling_siglip.py` carefully follows this architecture t
 ### Rotary Position Encoding (RoPE)
 
 <div align="center">
-<img src="images/RoPE embeddings%20.png" width="900" alt="RoPE Embeddings"/>
+<img src="images/RoPE%20embeddings.png" width="700" alt="RoPE Embeddings"/>
 </div>
 
 The model uses Rotary Position Encoding (RoPE) for handling positional information in the sequence. RoPE is a sophisticated position encoding method that offers several advantages over traditional positional embeddings:
