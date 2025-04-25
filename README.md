@@ -11,7 +11,11 @@ PyTorch implementations of cutting-edge vision-language models from scratch. Dem
 This repository contains a detailed PyTorch implementation of the PaLiGemma vision-language model (VLM). PaLiGemma is a powerful multimodal model that combines Google's Gemma language model with a SigLIP vision encoder, allowing it to understand both images and text to generate contextually relevant responses.
 
 <div align="center">
-<img src="images/PaliGemma%203B%20VLM%20implementation%20.png" width="1000" alt="PaLiGemma Architecture"/>
+<img src="images/PaliGemma%20.png" width="1000" alt="PaLiGemma"/>
+</div>
+
+<div align="center">
+<img src="images/PaliGemma%203B%20VLM%20implementation%20.png" width="900" alt="PaLiGemma Architecture"/>
 </div>
 
 PaLiGemma represents a significant advancement in multimodal AI, enabling complex image understanding and text generation capabilities that can be applied to a wide range of tasks including:
@@ -77,42 +81,16 @@ The implementation in `modeling_siglip.py` carefully follows this architecture t
 
 ### Rotary Position Encoding (RoPE)
 
-The model uses Rotary Position Encoding (RoPE) for handling positional information in the sequence, as visualized in the diagram below:
+<div align="center">
+<img src="images/RoPE embeddings%20.png" width="900" alt="RoPE Embeddings"/>
+</div>
 
-```mermaid
-graph TD
-    A[Query/Key vectors] --> C
-    B[Position information] --> C
-    C[Apply rotation matrix] --> D[Position-encoded vectors]
-    
-    E["Rotation Matrix R_θ(m)"] --> F
-    F["[cos(mθj)  -sin(mθj)][sin(mθj)   cos(mθj)]"] --> G
-    G["θj = 10000^(-2j/d)"] --> H
-    
-    I["Applied to vectors:q̂m,2j = qm,2j·cos(mθj) - qm,2j+1·sin(mθj)q̂m,2j+1 = qm,2j·sin(mθj) + qm,2j+1·cos(mθj)"]
-    
-    J["Complex form:q̂m = Reℂ(e^(imθ) ⊙ q)"]
-    
-    K["Properties:1. Relative position encoding2. Extrapolation beyond training length3. Decaying attention with frequency"]
-    
-    C --> I
-    I --> J
-    J --> K
-    
-    style A fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style B fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style C fill:#e6f7ff,stroke:#333,stroke-width:1px
-    style D fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style I fill:#e6ffe6,stroke:#333,stroke-width:1px
-    style J fill:#e6ffe6,stroke:#333,stroke-width:1px
-    style K fill:#e6ffe6,stroke:#333,stroke-width:1px
-```
-
-RoPE is a sophisticated position encoding method that offers several advantages over traditional positional embeddings:
+The model uses Rotary Position Encoding (RoPE) for handling positional information in the sequence. RoPE is a sophisticated position encoding method that offers several advantages over traditional positional embeddings:
 
 - **Relative Position Encoding**: Instead of absolute positions, RoPE encodes relative positions between tokens, making it more effective for capturing relationships in sequences.
 
-- **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency.
+- **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency. 
+  *(Note: The visualization diagram for RoPE can be found in the `rope-position-encoding.mermaid` file in this repository.)*
 
 - **Implementation Details**:
   - For each dimension pair (2j, 2j+1) in the embedding space, applies a 2D rotation
@@ -140,7 +118,7 @@ In our implementation, RoPE is applied to both query and key vectors in the self
 ### GeLU Activation Function
 
 <div align="center">
-<img src="images/GeLU%20vs%20ReLU.png" width="700" alt="GeLU vs ReLU"/>
+<img src="images/GeLU%20vs%20ReLU.png" width="900" alt="GeLU vs ReLU"/>
 </div>
 
 The Gemma model uses the Gaussian Error Linear Unit (GeLU) activation function instead of the traditional ReLU. GeLU has important properties that make it advantageous:
