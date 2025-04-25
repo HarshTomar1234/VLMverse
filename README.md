@@ -11,7 +11,7 @@ PyTorch implementations of cutting-edge vision-language models from scratch. Dem
 This repository contains a detailed PyTorch implementation of the PaLiGemma vision-language model (VLM). PaLiGemma is a powerful multimodal model that combines Google's Gemma language model with a SigLIP vision encoder, allowing it to understand both images and text to generate contextually relevant responses.
 
 <div align="center">
-<img src="images/PaLiGemma%203B%20VLM%20implementation%20.png" width="800" alt="PaLiGemma Architecture"/>
+<img src="images/PaliGemma%203B%20VLM%20implementation%20.png" width="800" alt="PaLiGemma Architecture"/>
 </div>
 
 PaLiGemma represents a significant advancement in multimodal AI, enabling complex image understanding and text generation capabilities that can be applied to a wide range of tasks including:
@@ -85,42 +85,8 @@ The model uses Rotary Position Encoding (RoPE) for handling positional informati
 
 - **Relative Position Encoding**: Instead of absolute positions, RoPE encodes relative positions between tokens, making it more effective for capturing relationships in sequences.
 
-- **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency.
-
-<div align="center">
-```
-graph TB
-    subgraph "Rotary Position Encoding (RoPE)"
-        A[Input: Query/Key vectors]
-        B[Position encoding]
-        C[Apply rotation matrix]
-        D[Output: Position-aware vectors]
-        
-        A --> C
-        B --> C
-        C --> D
-    end
-    
-    subgraph "Mathematical Formulation"
-        E["Position m embedding in 2D plane:
-        For each pair (q2j, q2j+1) in Q:
-        Apply rotation matrix R_θ(m)"]
-        
-        F["Rotation Matrix R_θ(m):
-        [cos(mθj)  -sin(mθj)]
-        [sin(mθj)   cos(mθj)]
-        where θj = 10000^(-2j/d)"]
-        
-        G["Full RoPE formulation:
-        q̂m,2j   = qm,2j·cos(mθj) - qm,2j+1·sin(mθj)
-        q̂m,2j+1 = qm,2j·sin(mθj) + qm,2j+1·cos(mθj)"]
-        
-        H["The complete matrix form:
-        q̂m = Reℂ(e^(imθ) ⊙ q)
-        where ⊙ is complex multiplication"]
-    end
-```
-</div>
+- **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency. 
+  *(Note: The visualization diagram for RoPE can be found in the `rope-position-encoding.mermaid` file in this repository.)*
 
 - **Implementation Details**:
   - For each dimension pair (2j, 2j+1) in the embedding space, applies a 2D rotation
