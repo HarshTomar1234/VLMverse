@@ -11,7 +11,7 @@ PyTorch implementations of cutting-edge vision-language models from scratch. Dem
 This repository contains a detailed PyTorch implementation of the PaLiGemma vision-language model (VLM). PaLiGemma is a powerful multimodal model that combines Google's Gemma language model with a SigLIP vision encoder, allowing it to understand both images and text to generate contextually relevant responses.
 
 <div align="center">
-<img src="images/PaliGemma%20.png" width="1000" alt="PaLiGemma"/>
+<img src="images/PaliGemma%20 .png" width="1000" alt="PaLiGemma"/>
 </div>
 
 <div align="center">
