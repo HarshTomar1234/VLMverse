@@ -1,8 +1,9 @@
 # VLMverse: Vision-Language Model Architectures
 
 <div align="center">
-<img src="images/VLMs%20architecture.png" width="700" alt="Vision Language Model Architecture"/>
+<img src="images/VLMs%20architecture.png" width="600" alt="Vision Language Model Architecture"/>
 </div>
+
 
 PyTorch implementations of cutting-edge vision-language models from scratch. Demystifying multimodal AI with clean, educational code and detailed architectural breakdowns.
 
@@ -16,7 +17,7 @@ PaLiGemma represents a significant advancement in multimodal AI, enabling comple
 - Visual reasoning
 - Multimodal chat
 
-The implementation is based on the [Google's PaLiGemma paper]([https://arxiv.org/abs/2312.13256](https://arxiv.org/abs/2407.07726)) and demonstrates how to:
+The implementation is based on the [Google's PaLiGemma paper](https://arxiv.org/abs/2312.13256) and demonstrates how to:
 - Load the pre-trained PaLiGemma weights from Hugging Face
 - Process images and text inputs with proper tokenization
 - Generate contextually relevant text based on images and prompts
@@ -26,7 +27,7 @@ The implementation is based on the [Google's PaLiGemma paper]([https://arxiv.org
 ## Architecture
 
 <div align="center">
-<img src="images/PaLiGemma%20architecture.png" width="700" alt="PaLiGemma architecture"/>
+<img src="images/PaLiGemma%203B%20VLM%20implementation%20.png" width="600" alt="PaLiGemma Architecture"/>
 </div>
 
 PaLiGemma consists of two main components that work together to process multimodal inputs:
@@ -56,7 +57,7 @@ PaLiGemma consists of two main components that work together to process multimod
 SigLIP (Sigmoid Loss for Language Image Pre-training) is an improvement over CLIP (Contrastive Language-Image Pre-training) that addresses several limitations of the original CLIP model:
 
 <div align="center">
-<img src="images/SigLip.png" width="500" alt="SigLIP vs CLIP"/>
+<img src="images/SigLip.png" width="600" alt="SigLIP vs CLIP"/>
 </div>
 
 Key improvements in SigLIP include:
@@ -87,6 +88,10 @@ The model uses Rotary Position Encoding (RoPE) for handling positional informati
 
 - **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency.
 
+<div align="center">
+<img src="images/rope_diagram.png" width="600" alt="Rotary Position Encoding Diagram"/>
+</div>
+
 - **Implementation Details**:
   - For each dimension pair (2j, 2j+1) in the embedding space, applies a 2D rotation
   - Rotation angle is determined by: θⱼ = 10000^(-2j/d) where d is the dimension
@@ -113,7 +118,7 @@ In our implementation, RoPE is applied to both query and key vectors in the self
 ### GeLU Activation Function
 
 <div align="center">
-<img src="images/GeLU%20vs%20ReLU.png" width="500" alt="GeLU vs ReLU"/>
+<img src="images/GeLU%20vs%20ReLU.png" width="600" alt="GeLU vs ReLU"/>
 </div>
 
 The Gemma model uses the Gaussian Error Linear Unit (GeLU) activation function instead of the traditional ReLU. GeLU has important properties that make it advantageous:
@@ -376,7 +381,7 @@ The model combines image and text through a sophisticated process:
 
 ## References
 
-- [PaLiGemma Paper]([https://arxiv.org/abs/2312.13256](https://arxiv.org/abs/2407.07726)): "PaLiGemma: Learning with Unified Multimodal Pathway in Vision Language Models"
+- [PaLiGemma Paper](https://arxiv.org/abs/2312.13256): "PaLiGemma: Learning with Unified Multimodal Pathway in Vision Language Models"
 - [Gemma: Open Models Based on Gemini Research and Technology](https://blog.google/technology/developers/gemma-open-models/)
 - [From CLIP to SigLIP](https://arxiv.org/abs/2303.15343): "SigLIP: Sign-to-Likelihood Supervision Improves Contrastive Language-Image Pre-training"
 - [RoFormer: Enhanced Transformer with Rotary Position Embedding](https://arxiv.org/abs/2104.09864)
@@ -389,4 +394,4 @@ This project is provided for educational purposes only. The model weights and ar
 
 ---
 
-Created with ❤️ by Harsh 
+Created with ❤️ by Harsh
