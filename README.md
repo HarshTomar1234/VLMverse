@@ -1,7 +1,7 @@
 # VLMverse: Vision-Language Model Architectures
 
 <div align="center">
-<img src="images/VLMs%20architecture.png" width="800" alt="Vision Language Model Architecture"/>
+<img src="images/VLMs%20architecture.png" width="1000" alt="Vision Language Model Architecture"/>
 </div>
 
 PyTorch implementations of cutting-edge vision-language models from scratch. Demystifying multimodal AI with clean, educational code and detailed architectural breakdowns.
@@ -11,7 +11,7 @@ PyTorch implementations of cutting-edge vision-language models from scratch. Dem
 This repository contains a detailed PyTorch implementation of the PaLiGemma vision-language model (VLM). PaLiGemma is a powerful multimodal model that combines Google's Gemma language model with a SigLIP vision encoder, allowing it to understand both images and text to generate contextually relevant responses.
 
 <div align="center">
-<img src="images/PaliGemma%203B%20VLM%20implementation%20.png" width="800" alt="PaLiGemma Architecture"/>
+<img src="images/PaliGemma%203B%20VLM%20implementation%20.png" width="1000" alt="PaLiGemma Architecture"/>
 </div>
 
 PaLiGemma represents a significant advancement in multimodal AI, enabling complex image understanding and text generation capabilities that can be applied to a wide range of tasks including:
@@ -50,13 +50,13 @@ PaLiGemma consists of two main components that work together to process multimod
 ### SigLIP Vision Encoder
 
 <div align="center">
-<img src="images/SigLip%20ViT.png" width="700" alt="SigLIP Vision Transformer"/>
+<img src="images/SigLip%20ViT.png" width="900" alt="SigLIP Vision Transformer"/>
 </div>
 
 SigLIP (Sigmoid Loss for Language Image Pre-training) is an improvement over CLIP (Contrastive Language-Image Pre-training) that addresses several limitations of the original CLIP model:
 
 <div align="center">
-<img src="images/SigLip.png" width="700" alt="SigLIP vs CLIP"/>
+<img src="images/SigLip.png" width="900" alt="SigLIP vs CLIP"/>
 </div>
 
 Key improvements in SigLIP include:
@@ -77,16 +77,42 @@ The implementation in `modeling_siglip.py` carefully follows this architecture t
 
 ### Rotary Position Encoding (RoPE)
 
-<div align="center">
-<img src="images/PaliGemma%20.png" width="700" alt="PaLiGemma with RoPE"/>
-</div>
+The model uses Rotary Position Encoding (RoPE) for handling positional information in the sequence, as visualized in the diagram below:
 
-The model uses Rotary Position Encoding (RoPE) for handling positional information in the sequence. RoPE is a sophisticated position encoding method that offers several advantages over traditional positional embeddings:
+```mermaid
+graph TD
+    A[Query/Key vectors] --> C
+    B[Position information] --> C
+    C[Apply rotation matrix] --> D[Position-encoded vectors]
+    
+    E["Rotation Matrix R_θ(m)"] --> F
+    F["[cos(mθj)  -sin(mθj)][sin(mθj)   cos(mθj)]"] --> G
+    G["θj = 10000^(-2j/d)"] --> H
+    
+    I["Applied to vectors:q̂m,2j = qm,2j·cos(mθj) - qm,2j+1·sin(mθj)q̂m,2j+1 = qm,2j·sin(mθj) + qm,2j+1·cos(mθj)"]
+    
+    J["Complex form:q̂m = Reℂ(e^(imθ) ⊙ q)"]
+    
+    K["Properties:1. Relative position encoding2. Extrapolation beyond training length3. Decaying attention with frequency"]
+    
+    C --> I
+    I --> J
+    J --> K
+    
+    style A fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style B fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style C fill:#e6f7ff,stroke:#333,stroke-width:1px
+    style D fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style I fill:#e6ffe6,stroke:#333,stroke-width:1px
+    style J fill:#e6ffe6,stroke:#333,stroke-width:1px
+    style K fill:#e6ffe6,stroke:#333,stroke-width:1px
+```
+
+RoPE is a sophisticated position encoding method that offers several advantages over traditional positional embeddings:
 
 - **Relative Position Encoding**: Instead of absolute positions, RoPE encodes relative positions between tokens, making it more effective for capturing relationships in sequences.
 
-- **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency. 
-  *(Note: The visualization diagram for RoPE can be found in the `rope-position-encoding.mermaid` file in this repository.)*
+- **Mathematical Foundation**: RoPE applies a rotation matrix to query and key vectors in the attention mechanism, with the rotation angle determined by the position and frequency.
 
 - **Implementation Details**:
   - For each dimension pair (2j, 2j+1) in the embedding space, applies a 2D rotation
