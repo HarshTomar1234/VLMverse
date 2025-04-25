@@ -16,7 +16,7 @@ PaLiGemma represents a significant advancement in multimodal AI, enabling comple
 - Visual reasoning
 - Multimodal chat
 
-The implementation is based on the [Google's PaLiGemma paper](https://arxiv.org/abs/2312.13256) and demonstrates how to:
+The implementation is based on the [Google's PaLiGemma paper]([https://arxiv.org/abs/2312.13256](https://arxiv.org/abs/2407.07726)) and demonstrates how to:
 - Load the pre-trained PaLiGemma weights from Hugging Face
 - Process images and text inputs with proper tokenization
 - Generate contextually relevant text based on images and prompts
@@ -376,7 +376,7 @@ The model combines image and text through a sophisticated process:
 
 ## References
 
-- [PaLiGemma Paper](https://arxiv.org/abs/2312.13256): "PaLiGemma: Learning with Unified Multimodal Pathway in Vision Language Models"
+- [PaLiGemma Paper]([https://arxiv.org/abs/2312.13256](https://arxiv.org/abs/2407.07726)): "PaLiGemma: Learning with Unified Multimodal Pathway in Vision Language Models"
 - [Gemma: Open Models Based on Gemini Research and Technology](https://blog.google/technology/developers/gemma-open-models/)
 - [From CLIP to SigLIP](https://arxiv.org/abs/2303.15343): "SigLIP: Sign-to-Likelihood Supervision Improves Contrastive Language-Image Pre-training"
 - [RoFormer: Enhanced Transformer with Rotary Position Embedding](https://arxiv.org/abs/2104.09864)
