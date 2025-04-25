@@ -1,0 +1,18 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.37.0
+safetensors>=0.4.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# Hugging Face utilities
+huggingface-hub>=0.19.0
+tokenizers>=0.15.0
+
+# Optional utilities
+fire>=0.5.0  # For command line interface
+tqdm>=4.66.0  # For progress bars
+
+# Development dependencies (optional)
+pytest>=7.0.0  # For testing
+black>=23.0.0  # For code formatting
