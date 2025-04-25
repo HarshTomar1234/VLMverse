@@ -390,5 +390,3 @@ The model combines image and text through a sophisticated process:
 This project is provided for educational purposes only. The model weights and architecture are subject to Google's model license.
 
 ---
-
-Created with ❤️ by Harsh
