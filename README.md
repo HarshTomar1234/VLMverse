@@ -1,8 +1,10 @@
-# PaLiGemma: Vision-Language Model Implementation
+# VLMverse: Vision-Language Model Architectures
 
 <div align="center">
 <img src="images/PaLiGemma%203B%20VLM%20implementation%20.png" width="700" alt="PaLiGemma Architecture"/>
 </div>
+
+PyTorch implementations of cutting-edge vision-language models from scratch. Demystifying multimodal AI with clean, educational code and detailed architectural breakdowns.
 
 ## Overview
 
@@ -76,51 +78,7 @@ The implementation in `modeling_siglip.py` carefully follows this architecture t
 ### Rotary Position Encoding (RoPE)
 
 <div align="center">
-<pre>
-graph TB
-    subgraph "Rotary Position Encoding (RoPE)"
-        A[Input: Query/Key vectors]
-        B[Position encoding]
-        C[Apply rotation matrix]
-        D[Output: Position-aware vectors]
-        
-        A --> C
-        B --> C
-        C --> D
-    end
-    
-    subgraph "Mathematical Formulation"
-        E["Position m embedding in 2D plane:
-        For each pair (q2j, q2j+1) in Q:
-        Apply rotation matrix R_θ(m)"]
-        
-        F["Rotation Matrix R_θ(m):
-        [cos(mθj)  -sin(mθj)]
-        [sin(mθj)   cos(mθj)]
-        where θj = 10000^(-2j/d)"]
-        
-        G["Full RoPE formulation:
-        q̂m,2j   = qm,2j·cos(mθj) - qm,2j+1·sin(mθj)
-        q̂m,2j+1 = qm,2j·sin(mθj) + qm,2j+1·cos(mθj)"]
-        
-        H["The complete matrix form:
-        q̂m = Reℂ(e^(imθ) ⊙ q)
-        where ⊙ is complex multiplication"]
-        
-        E --> F --> G --> H
-    end
-    
-    subgraph "Key Properties"
-        I["1. Relative position encoding 
-        ⟨q̂m, k̂n⟩ = f(q, k, m-n)"]
-        
-        J["2. Decaying attention spans
-        with frequency θj"]
-        
-        K["3. Linear extrapolation beyond
-        training context length"]
-    end
-</pre>
+<img src="images/PaliGemma%20.png" width="600" alt="PaLiGemma with RoPE"/>
 </div>
 
 The model uses Rotary Position Encoding (RoPE) for handling positional information in the sequence. RoPE is a sophisticated position encoding method that offers several advantages over traditional positional embeddings:
@@ -237,8 +195,8 @@ This technique:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/paligemma-implementation.git
-   cd paligemma-implementation
+   git clone https://github.com/yourusername/vlmverse.git
+   cd vlmverse
    ```
 
 2. Install the required dependencies:
