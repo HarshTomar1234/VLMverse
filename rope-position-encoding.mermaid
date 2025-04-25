@@ -1,40 +1,21 @@
-```mermaid
 graph TD
-    subgraph "Rotary Position Encoding (RoPE)"
-        A[Query/Key vectors] --> C
-        B[Position information] --> C
-        C[Apply rotation matrix\nto each dimension pair] --> D[Position-encoded vectors]
-    end
+    A[Query/Key vectors] --> C
+    B[Position information] --> C
+    C[Apply rotation matrix] --> D[Position-encoded vectors]
     
-    subgraph "Mathematical Formulation"
-        E["For position m and dimension pair (2j, 2j+1):"]
-        
-        F["Rotation Matrix R_θ(m):
-        [cos(mθj)  -sin(mθj)]
-        [sin(mθj)   cos(mθj)]
-        where θj = 10000^(-2j/d)"]
-        
-        G["Applied to query/key vectors:
-        q̂m,2j   = qm,2j·cos(mθj) - qm,2j+1·sin(mθj)
-        q̂m,2j+1 = qm,2j·sin(mθj) + qm,2j+1·cos(mθj)"]
-        
-        H["Complex number representation:
-        q̂m = Reℂ(e^(imθ) ⊙ q)
-        where ⊙ is complex multiplication"]
-        
-        E --> F --> G --> H
-    end
+    E["Rotation Matrix R_θ(m)"] --> F
+    F["[cos(mθj)  -sin(mθj)]<br/>[sin(mθj)   cos(mθj)]"] --> G
+    G["θj = 10000^(-2j/d)"] --> H
     
-    subgraph "Key Properties"
-        I["Relative position encoding:
-        ⟨q̂m, k̂n⟩ = f(q, k, m-n)"]
-        
-        J["Enables extrapolation beyond
-        training context length"]
-        
-        K["Decaying attention with
-        frequency θj"]
-    end
+    I["Applied to vectors:<br/>q̂m,2j = qm,2j·cos(mθj) - qm,2j+1·sin(mθj)<br/>q̂m,2j+1 = qm,2j·sin(mθj) + qm,2j+1·cos(mθj)"]
+    
+    J["Complex form:<br/>q̂m = Reℂ(e^(imθ) ⊙ q)"]
+    
+    K["Properties:<br/>1. Relative position encoding<br/>2. Extrapolation beyond training length<br/>3. Decaying attention with frequency"]
+    
+    C --> I
+    I --> J
+    J --> K
     
     style A fill:#f9f9f9,stroke:#333,stroke-width:1px
     style B fill:#f9f9f9,stroke:#333,stroke-width:1px
@@ -47,4 +28,3 @@ graph TD
     style I fill:#e6ffe6,stroke:#333,stroke-width:1px
     style J fill:#e6ffe6,stroke:#333,stroke-width:1px
     style K fill:#e6ffe6,stroke:#333,stroke-width:1px
-```
