@@ -1,7 +1,7 @@
 # VLMverse: Vision-Language Model Architectures
 
 <div align="center">
-<img src="images/PaLiGemma%203B%20VLM%20implementation%20.png" width="700" alt="PaLiGemma Architecture"/>
+<img src="images/PaLiGemma.png" width="700" alt="PaLiGemma Architecture"/>
 </div>
 
 PyTorch implementations of cutting-edge vision-language models from scratch. Demystifying multimodal AI with clean, educational code and detailed architectural breakdowns.
