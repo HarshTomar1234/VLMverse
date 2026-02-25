@@ -251,4 +251,4 @@ generated_text = model.generate(
 
 ---
 
-**Note**: This documentation is part of the transformers-CV repository focusing on computer vision architectures built with transformers.
+
